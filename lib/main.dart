@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learnblocnew/UI/Counter_screen.dart';
+import 'package:learnblocnew/UI/Favourite_screen.dart';
 import 'package:learnblocnew/UI/Switch_screen.dart';
 import 'package:learnblocnew/UI/image_picker.dart';
+import 'package:learnblocnew/UI/to_do_screen.dart';
 import 'package:learnblocnew/bloc/counter_bloc.dart';
+import 'package:learnblocnew/bloc/favourtive_bloc/favourtive_bloc.dart';
 import 'package:learnblocnew/image_picker_bloc/image_picker_bloc.dart';
+import 'package:learnblocnew/repository/favourite_repository.dart';
 import 'package:learnblocnew/switch_bloc/switch_bloc.dart';
+import 'package:learnblocnew/todo_bloc/todo_bloc.dart';
 import 'package:learnblocnew/utils/ImagePickerUtils.dart';
 
 void main() {
@@ -25,14 +30,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SwitchBloc(),
         ),
-        BlocProvider(create: (context)=> ImagePickerBloc(Imagepickerutils()))
+        BlocProvider(create: (context)=> ImagePickerBloc(Imagepickerutils())),
+        BlocProvider(create: (context) => TodoBloc(),),
+        BlocProvider(create: (context) => FavourtiveBloc(FavouriteRepository()),)
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-        home: ImagePickerScreen(),
+        home: FavouriteScreen(),
       ),
     );
   }
